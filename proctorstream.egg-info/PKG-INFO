@@ -1,0 +1,29 @@
+Metadata-Version: 2.4
+Name: proctorstream
+Version: 0.1.0
+Summary: CPU-first end-to-end AI proctoring inference platform
+Requires-Python: >=3.11
+License-File: LICENSE
+Requires-Dist: fastapi<1,>=0.115
+Requires-Dist: uvicorn[standard]<1,>=0.30
+Requires-Dist: pydantic<3,>=2.8
+Requires-Dist: sqlalchemy<3,>=2.0
+Requires-Dist: python-multipart<1,>=0.0.9
+Requires-Dist: pyyaml<7,>=6
+Requires-Dist: prometheus-client<1,>=0.20
+Requires-Dist: httpx<1,>=0.27
+Requires-Dist: psycopg[binary]>=3.2
+Requires-Dist: redis>=5
+Requires-Dist: boto3>=1.35
+Provides-Extra: test
+Requires-Dist: pytest>=8; extra == "test"
+Requires-Dist: pytest-cov>=5; extra == "test"
+Provides-Extra: models
+Requires-Dist: opencv-python-headless<5,>=4.10; extra == "models"
+Requires-Dist: onnxruntime>=1.18; extra == "models"
+Requires-Dist: webrtcvad-wheels>=2.0.14; extra == "models"
+Provides-Extra: infra
+Requires-Dist: psycopg[binary]>=3.2; extra == "infra"
+Requires-Dist: redis>=5; extra == "infra"
+Requires-Dist: boto3>=1.35; extra == "infra"
+Dynamic: license-file

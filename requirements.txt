@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+pydantic
+sqlalchemy
+python-multipart
+pyyaml
+prometheus-client
+httpx
+pytest
+pytest-cov

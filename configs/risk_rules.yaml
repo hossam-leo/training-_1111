@@ -1,0 +1,25 @@
+rules:
+  - id: R-MULTI-FACE
+    event_type: MULTI_FACE
+    severity: ELEVATED
+    explanation: Multiple faces were detected in a usable frame.
+  - id: R-IDENTITY-MISMATCH
+    event_type: IDENTITY_MISMATCH
+    severity: HIGH
+    explanation: Identity verification did not match the enrolled candidate.
+  - id: R-PHONE
+    event_type: PROHIBITED_OBJECT
+    severity: HIGH
+    explanation: A prohibited object was detected by a configured detector.
+  - id: R-TAB-SWITCH
+    event_type: TAB_HIDDEN
+    severity: WATCH
+    explanation: The browser tab became hidden.
+  - id: R-FULLSCREEN
+    event_type: FULLSCREEN_EXIT
+    severity: WATCH
+    explanation: Fullscreen was exited during the session.
+  - id: R-HEARTBEAT
+    event_type: HEARTBEAT_MISSED
+    severity: WATCH
+    explanation: The client heartbeat was not observed within the expected interval.

@@ -1,0 +1,2 @@
+heartbeat_timeout_seconds: 15
+max_event_age_seconds: 300

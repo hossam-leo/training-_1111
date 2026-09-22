@@ -1,0 +1,14 @@
+{
+  "model": "webrtc-vad",
+  "version": "webrtcvad-2.0.14",
+  "sample_rate": 16000,
+  "duration_seconds": 1,
+  "warmup": 20,
+  "iterations": 100,
+  "mean_ms": 0.09867258000667789,
+  "p50_ms": 0.09672400028648553,
+  "p95_ms": 0.11255400022491813,
+  "p99_ms": 0.12227099978190381,
+  "throughput_realtime_factor": 10134.527747549751,
+  "python": "3.12.3"
+}

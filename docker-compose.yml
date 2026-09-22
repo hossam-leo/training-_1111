@@ -1,0 +1,83 @@
+services:
+  api:
+    build: .
+    command: uvicorn services.api.main:app --host 0.0.0.0 --port 8000
+    ports: ["8000:8000"]
+    environment:
+      PROCTORSTREAM_DB_URL: postgresql+psycopg://proctor:proctor@postgres:5432/proctorstream
+      PROCTORSTREAM_STORAGE_DIR: /app/data/media
+      PROCTORSTREAM_REPORT_DIR: /app/data/reports
+      PROCTORSTREAM_TELEMETRY_SECRET: ${PROCTORSTREAM_TELEMETRY_SECRET:-change-me-in-development}
+      PROCTORSTREAM_AUTH_SECRET: ${PROCTORSTREAM_AUTH_SECRET:-change-me-in-development}
+      REDIS_URL: redis://redis:6379/0
+      MINIO_ENDPOINT: minio:9000
+      MINIO_BUCKET: proctorstream-private
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+      PROCTORSTREAM_OBJECT_STORE: minio
+      PROCTORSTREAM_EVENT_BUS: redis
+      PROCTORSTREAM_AUTH_REQUIRED: ${PROCTORSTREAM_AUTH_REQUIRED:-false}
+    volumes: ["app_data:/app/data"]
+    depends_on:
+      postgres: {condition: service_healthy}
+      redis: {condition: service_healthy}
+      minio: {condition: service_healthy}
+    healthcheck: {test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"], interval: 10s, timeout: 3s, retries: 5}
+    restart: unless-stopped
+  realtime-worker:
+    build: .
+    command: python -m services.workers.realtime
+    environment: {REDIS_URL: redis://redis:6379/0, PROCTORSTREAM_DB_URL: postgresql+psycopg://proctor:proctor@postgres:5432/proctorstream}
+    depends_on: {redis: {condition: service_healthy}, postgres: {condition: service_healthy}, api: {condition: service_healthy}}
+    healthcheck: {test: ["CMD", "python", "-c", "import services.workers.realtime"], interval: 15s, timeout: 5s, retries: 3}
+    restart: unless-stopped
+  batch-worker:
+    build: .
+    command: python -m services.workers.batch
+    environment: {REDIS_URL: redis://redis:6379/0, PROCTORSTREAM_DB_URL: postgresql+psycopg://proctor:proctor@postgres:5432/proctorstream}
+    volumes: ["app_data:/app/data"]
+    depends_on: {redis: {condition: service_healthy}, postgres: {condition: service_healthy}, api: {condition: service_healthy}}
+    healthcheck: {test: ["CMD", "python", "-c", "import services.workers.batch"], interval: 15s, timeout: 5s, retries: 3}
+    restart: unless-stopped
+  postgres:
+    image: postgres:16-alpine
+    environment: {POSTGRES_USER: proctor, POSTGRES_PASSWORD: proctor, POSTGRES_DB: proctorstream}
+    volumes: ["postgres_data:/var/lib/postgresql/data"]
+    healthcheck: {test: ["CMD-SHELL", "pg_isready -U proctor -d proctorstream"], interval: 5s, timeout: 5s, retries: 10}
+    restart: unless-stopped
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    volumes: ["redis_data:/data"]
+    healthcheck: {test: ["CMD", "redis-cli", "ping"], interval: 5s, timeout: 3s, retries: 10}
+    restart: unless-stopped
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment: {MINIO_ROOT_USER: minioadmin, MINIO_ROOT_PASSWORD: minioadmin}
+    volumes: ["minio_data:/data"]
+    ports: ["9001:9001"]
+    healthcheck: {test: ["CMD", "mc", "ready", "local"], interval: 10s, timeout: 5s, retries: 10}
+    restart: unless-stopped
+  prometheus:
+    image: prom/prometheus:latest
+    volumes: ["./ops/prometheus.yml:/etc/prometheus/prometheus.yml:ro"]
+    ports: ["9090:9090"]
+    restart: unless-stopped
+  grafana:
+    image: grafana/grafana:latest
+    volumes: ["grafana_data:/var/lib/grafana"]
+    ports: ["3000:3000"]
+    restart: unless-stopped
+  nginx:
+    image: nginx:alpine
+    ports: ["8080:80"]
+    volumes: ["./ops/nginx.conf:/etc/nginx/nginx.conf:ro"]
+    depends_on: {api: {condition: service_healthy}}
+    restart: unless-stopped
+volumes:
+  app_data: {}
+  postgres_data: {}
+  redis_data: {}
+  minio_data: {}
+  grafana_data: {}

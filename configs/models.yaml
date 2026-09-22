@@ -1,0 +1,6 @@
+models:
+  face_presence: {adapter: cpu_heuristic, version: cpu-heuristic-1, available: true}
+  anti_spoofing: {adapter: unavailable_fallback, version: unknown-1, available: false}
+  identity: {adapter: unavailable_fallback, version: unknown-1, available: false}
+  object_detector: {adapter: unavailable_fallback, version: unknown-1, available: false}
+  audio: {adapter: unavailable_fallback, version: unknown-1, available: false}

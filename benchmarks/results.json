@@ -1,0 +1,220 @@
+{
+  "protocol": {
+    "warmup": 100,
+    "measured": 1000,
+    "batch_sizes": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32
+    ],
+    "repeats": 3
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.18.38+-x86_64-with-glibc2.39"
+  },
+  "rows": [
+    {
+      "batch_size": 1,
+      "repeat_samples": 1000,
+      "mean_ms": 0.0025972119988182385,
+      "stdev_ms": 0.0005660404676597398,
+      "p50_ms": 0.002537000000302214,
+      "p95_ms": 0.0026200000320386607,
+      "p99_ms": 0.004083000021637417,
+      "environment": "local CPU risk path",
+      "repeat": 1
+    },
+    {
+      "batch_size": 1,
+      "repeat_samples": 1000,
+      "mean_ms": 0.0025642459995651734,
+      "stdev_ms": 0.0003984612175535531,
+      "p50_ms": 0.0025009999262692872,
+      "p95_ms": 0.0025960000584746012,
+      "p99_ms": 0.004119000095670344,
+      "environment": "local CPU risk path",
+      "repeat": 2
+    },
+    {
+      "batch_size": 1,
+      "repeat_samples": 1000,
+      "mean_ms": 0.002542140003924942,
+      "stdev_ms": 0.00013131167625108598,
+      "p50_ms": 0.002534000032028416,
+      "p95_ms": 0.0026019999950221973,
+      "p99_ms": 0.0026720001642388524,
+      "environment": "local CPU risk path",
+      "repeat": 3
+    },
+    {
+      "batch_size": 2,
+      "repeat_samples": 1000,
+      "mean_ms": 0.0031373270039694034,
+      "stdev_ms": 0.0006055984478404037,
+      "p50_ms": 0.0030440000955422875,
+      "p95_ms": 0.0031559998205921147,
+      "p99_ms": 0.005291000206852914,
+      "environment": "local CPU risk path",
+      "repeat": 1
+    },
+    {
+      "batch_size": 2,
+      "repeat_samples": 1000,
+      "mean_ms": 0.0032172129995160503,
+      "stdev_ms": 0.0006051576222766961,
+      "p50_ms": 0.0031090000902622705,
+      "p95_ms": 0.004174999958195258,
+      "p99_ms": 0.005127000122229219,
+      "environment": "local CPU risk path",
+      "repeat": 2
+    },
+    {
+      "batch_size": 2,
+      "repeat_samples": 1000,
+      "mean_ms": 0.0031485930003327667,
+      "stdev_ms": 0.0005763937103733606,
+      "p50_ms": 0.003111000069111469,
+      "p95_ms": 0.0031910001325741177,
+      "p99_ms": 0.003259000095567899,
+      "environment": "local CPU risk path",
+      "repeat": 3
+    },
+    {
+      "batch_size": 4,
+      "repeat_samples": 1000,
+      "mean_ms": 0.004200325998226617,
+      "stdev_ms": 0.00037827232165305475,
+      "p50_ms": 0.004171000000496861,
+      "p95_ms": 0.004259999968780903,
+      "p99_ms": 0.004329000148572959,
+      "environment": "local CPU risk path",
+      "repeat": 1
+    },
+    {
+      "batch_size": 4,
+      "repeat_samples": 1000,
+      "mean_ms": 0.004257177007275459,
+      "stdev_ms": 0.0006779684938692387,
+      "p50_ms": 0.004214999989926582,
+      "p95_ms": 0.004299000011087628,
+      "p99_ms": 0.004378000085125677,
+      "environment": "local CPU risk path",
+      "repeat": 2
+    },
+    {
+      "batch_size": 4,
+      "repeat_samples": 1000,
+      "mean_ms": 0.004158684998401441,
+      "stdev_ms": 0.0006849278466037166,
+      "p50_ms": 0.004107999984626076,
+      "p95_ms": 0.004192999995211721,
+      "p99_ms": 0.004307999915909022,
+      "environment": "local CPU risk path",
+      "repeat": 3
+    },
+    {
+      "batch_size": 8,
+      "repeat_samples": 1000,
+      "mean_ms": 0.006217968004648355,
+      "stdev_ms": 0.0006256548701122462,
+      "p50_ms": 0.006149000000732485,
+      "p95_ms": 0.006244000132937799,
+      "p99_ms": 0.00948299998526636,
+      "environment": "local CPU risk path",
+      "repeat": 1
+    },
+    {
+      "batch_size": 8,
+      "repeat_samples": 1000,
+      "mean_ms": 0.006207998001400483,
+      "stdev_ms": 0.0005001207832454411,
+      "p50_ms": 0.0061619998632522766,
+      "p95_ms": 0.0062569999954575906,
+      "p99_ms": 0.0063490001593891066,
+      "environment": "local CPU risk path",
+      "repeat": 2
+    },
+    {
+      "batch_size": 8,
+      "repeat_samples": 1000,
+      "mean_ms": 0.006276699993577495,
+      "stdev_ms": 0.0005534238587730021,
+      "p50_ms": 0.006222999900273862,
+      "p95_ms": 0.006314999836831703,
+      "p99_ms": 0.006699000095977681,
+      "environment": "local CPU risk path",
+      "repeat": 3
+    },
+    {
+      "batch_size": 16,
+      "repeat_samples": 1000,
+      "mean_ms": 0.010388693001459615,
+      "stdev_ms": 0.0011432029485333654,
+      "p50_ms": 0.010224000106973108,
+      "p95_ms": 0.01037399988490506,
+      "p99_ms": 0.016830999811645597,
+      "environment": "local CPU risk path",
+      "repeat": 1
+    },
+    {
+      "batch_size": 16,
+      "repeat_samples": 1000,
+      "mean_ms": 0.010467028998164096,
+      "stdev_ms": 0.001528662228619052,
+      "p50_ms": 0.010245999874314293,
+      "p95_ms": 0.010424000038256054,
+      "p99_ms": 0.01724699995975243,
+      "environment": "local CPU risk path",
+      "repeat": 2
+    },
+    {
+      "batch_size": 16,
+      "repeat_samples": 1000,
+      "mean_ms": 0.010379755001167723,
+      "stdev_ms": 0.001397625406919525,
+      "p50_ms": 0.010169000006499118,
+      "p95_ms": 0.010535000001254957,
+      "p99_ms": 0.017187999901580042,
+      "environment": "local CPU risk path",
+      "repeat": 3
+    },
+    {
+      "batch_size": 32,
+      "repeat_samples": 1000,
+      "mean_ms": 0.018402360003619833,
+      "stdev_ms": 0.0018585922914393662,
+      "p50_ms": 0.018171999954574858,
+      "p95_ms": 0.01875900011327758,
+      "p99_ms": 0.028833999976995983,
+      "environment": "local CPU risk path",
+      "repeat": 1
+    },
+    {
+      "batch_size": 32,
+      "repeat_samples": 1000,
+      "mean_ms": 0.01831716499441427,
+      "stdev_ms": 0.00148386326878927,
+      "p50_ms": 0.01812400000744674,
+      "p95_ms": 0.01833800001804775,
+      "p99_ms": 0.024774999928922625,
+      "environment": "local CPU risk path",
+      "repeat": 2
+    },
+    {
+      "batch_size": 32,
+      "repeat_samples": 1000,
+      "mean_ms": 0.018604108999852542,
+      "stdev_ms": 0.0020930466496864152,
+      "p50_ms": 0.018281999928149162,
+      "p95_ms": 0.018946999944091658,
+      "p99_ms": 0.030750000178159098,
+      "environment": "local CPU risk path",
+      "repeat": 3
+    }
+  ],
+  "claims": "These measurements cover only the deterministic local risk path; no model accuracy, GPU, Tier 1, Tier 2, or concurrency claim is made."
+}
